@@ -8,8 +8,8 @@ app.use(cors({
     credentials: true,
     origin: [process.env.FRONTEND_URL, "http://localhost:3000"]
   }));
-CourseRoutes(app);
 app.use(express.json());
 CourseRoutes(app);
+ModuleRoutes(app);
 Lab5(app);
 app.listen(process.env.PORT || 4000);
