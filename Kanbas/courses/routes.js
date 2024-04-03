@@ -9,6 +9,11 @@ export default function CourseRoutes(app) {
     }
     res.send(course);
   });
+  app.get("/api/users/:uid/courses", (req, res) => {
+    const { uid } = req.params;
+    const courses = Database.courses.filter((c) => c.user === uid);
+    res.send(courses);
+  });
   app.put("/api/courses/:id", (req, res) => {
     const { id } = req.params;
     const course = req.body;

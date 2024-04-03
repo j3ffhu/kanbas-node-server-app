@@ -14,6 +14,22 @@ const todos = [
 ];
 
 const Lab5 = (app) => {
+  app.get("/", (req, res) => {
+    res.send("Welcome to Lab 5");
+  });
+
+  app.get("/api/users/:userId, findUserById", (req, res) => {
+    const { userId } = req.params;
+    const user = users.find((u) => u.id === parseInt(userId));
+    res.json(user);
+  });
+
+  app.post("/api/users/profile, profile", (req, res) => {
+    const { userId } = req.query;
+    const user = users.find((u) => u.id === parseInt(userId));
+    res.json(user);
+  });
+
   app.get("/a5/todos/:id/completed/:completed", (req, res) => {
     const { id, completed } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
@@ -42,18 +58,20 @@ const Lab5 = (app) => {
     todos.push(newTodo);
     res.json(newTodo);
   });
+  
   app.get("/a5/todos/:id", (req, res) => {
     const { id } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
     res.json(todo);
   });
+
   app.delete("/a5/todos/:id", (req, res) => {
     const { id } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
     todos.splice(todos.indexOf(todo), 1);
     res.sendStatus(200);
   });
-
+  
   app.get("/a5/todos/:id/title/:title", (req, res) => {
     const { id, title } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
