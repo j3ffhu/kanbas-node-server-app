@@ -10,7 +10,7 @@ import { config } from 'dotenv';
 import session from 'express-session';
 config({ path: '.env.local' });
 
-const CONNECTION_STRING = process.env.KANBAS_DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/kanbas';
+const CONNECTION_STRING = process.env.KANBAS_DB_CONNECTION_STRING || 'NOT_MATTER';
 mongoose.connect(CONNECTION_STRING);
 
 const app = express();

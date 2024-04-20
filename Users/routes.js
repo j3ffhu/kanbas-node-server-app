@@ -20,10 +20,23 @@ export default function UserRoutes(app) {
     res.json(users);
   };
   app.get("/api/users", findAllUsers);
+
+
   const findUserById = async (req, res) => {
-    const user = await dao.findUserById(req.params.userId);
-    res.json(user);
+
+    try {
+      const user = await dao.findUserById(req.params.userId);
+      console.log("User found:", user);
+      res.json(user);
+
+  } catch (error) {
+      console.error("Error finding user:", error);
+  }
+
+
   };
+
+
   const updateUser = async (req, res) => {
     const { userId } = req.params;
     const status = await dao.updateUser(userId, req.body);
